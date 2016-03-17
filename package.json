@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node_modules/.bin/webpack-dev-server",
-    "build": "node_modules/.bin/webpack --env.env dev --env.yo  yo"
+    "start": "node_modules/.bin/webpack-dev-server --env.ENV development --env.HMR true",
+    "build": "node_modules/.bin/webpack --env.ENV development --env.HMR true"
   },
   "dependencies": {
     "angular2": "^2.0.0-beta.9",
