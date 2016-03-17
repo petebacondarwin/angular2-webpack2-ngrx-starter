@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Angular 2 Webpack 2 starter</title>
+  <title>Angular 2 Webpack 2 starter by @AngularClass</title>
 </head>
 <body>
 
@@ -9,9 +9,12 @@
     Loading...
   </app>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.2.0/core.min.js"></script>
+  <!-- Development Only -->
+  <script src="http://localhost:3000/webpack-dev-server.js"></script>
+
+  <script src="polyfills.bundle.js"></script>
   <script src="vendor.bundle.js"></script>
-  <script async src="main.bundle.js"></script>
+  <script src="main.bundle.js"></script>
 
 </body>
 </html>
