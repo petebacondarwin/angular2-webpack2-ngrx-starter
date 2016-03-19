@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node_modules/.bin/webpack-dev-server --env.ENV development --env.HMR true",
-    "build": "node_modules/.bin/webpack --env.ENV development --env.HMR true",
+    "start": "node_modules/.bin/webpack-dev-server --env.ENV development",
+    "build": "node_modules/.bin/webpack --env.ENV development",
     "typings-install": "node_modules/.bin/typings install",
     "postinstall": "npm run typings-install"
   },

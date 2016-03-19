@@ -6,7 +6,7 @@ const path = require('path');
 function webpackConfig(options: EnvOptions = {}): WebpackConfig {
 
   return {
-    cache: false,
+    cache: true,
 
     entry: {
       polyfills: './src/polyfills',
@@ -35,16 +35,14 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new ForkCheckerPlugin(),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: ['main', 'vendor', 'polyfills'],
-        minChunks: Infinity
-      }),
+      new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
       new webpack.DefinePlugin({
         ENV: JSON.stringify(options.ENV),
-        HMR: options.HMR
+        HMR: false
       })
     ],
 
+    // devtool: 'source-map',
     devtool: 'cheap-module-eval-source-map',
     resolve: {
       extensions: ['.ts', '.js', '.json'],
@@ -53,9 +51,21 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
     devServer: {
       contentBase: './src',
       port: 3000,
+      // hot: options.HMR, // there are problems with HMR at the moment
       historyApiFallback: true
-    }
+    },
 
+    node: {
+      global: true,
+      process: true,
+      Buffer: false,
+      crypto: 'empty',
+      module: false,
+      clearImmediate: false,
+      setImmediate: false,
+      clearTimeout: true,
+      setTimeout: true
+    }
   };
 }
 
@@ -92,16 +102,26 @@ interface WebpackConfig {
   output: any;
   module?: {
     loaders?: Array<any>
-  },
+  };
   plugins?: Array<any>;
   resolve?: {
     extensions?: Array<string>;
-  },
+  };
   devServer?: {
     contentBase?: string;
     port?: number;
     historyApiFallback?: boolean;
     hot?: boolean;
-  }
+  };
+  node?: {
+    process?: boolean;
+    global?: boolean;
+    Buffer?: boolean;
+    crypto?: string | boolean;
+    module?: boolean;
+    clearImmediate?: boolean;
+    setImmediate?: boolean
+    clearTimeout?: boolean;
+    setTimeout?: boolean
+  };
 }
-
