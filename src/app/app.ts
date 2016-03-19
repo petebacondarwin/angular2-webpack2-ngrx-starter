@@ -4,7 +4,17 @@ import {Component} from 'angular2/core';
 @Component({
   selector: 'app',
   template: `
-  <h1>Hello Angular 2 and Webpack 2</h1>
+  <navbar>
+    <h1>Hello Angular 2 and Webpack 2</h1>
+  </navbar>
+
+  <main>
+
+    <div>Your Content Here</div>
+
+  </main>
+
+  <footer>AngularClass</footer>
   `
 })
 export class App {
