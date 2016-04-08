@@ -16,9 +16,9 @@
     "postinstall": "npm run typings-install"
   },
   "dependencies": {
-    "angular2": "2.0.0-beta.13",
-    "rxjs": "5.0.0-beta.2",
-    "zone.js": "0.6.6"
+    "angular2": "2.0.0-beta.14",
+    "rxjs": "~5.0.0-beta.4",
+    "zone.js": "~0.6.10"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^0.15.10",
@@ -31,8 +31,8 @@
     "typescript": "^1.8.9",
     "typings": "^0.7.9",
     "webpack": "^2.1.0-beta.4",
-    "webpack-dev-server": "^2.0.0-beta",
-    "webpack-hot-middleware": "^2.6.4"
+    "webpack-dev-server": "2.0.0-beta",
+    "webpack-hot-middleware": "2.6.4"
   },
   "license": "Apache-2.0",
   "bugs": {
