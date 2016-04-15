@@ -23,18 +23,14 @@ export function bootstrapDomReady() {
   document.addEventListener('DOMContentLoaded', main);
 }
 
-if ('development' === ENV) {
+if ('development' === ENV && HMR) {
   // activate hot module reload
-  if (HMR) {
-    if (document.readyState === 'complete') {
-      main();
-    } else {
-      bootstrapDomReady();
-    }
-    module.hot.accept();
+  if (document.readyState === 'complete') {
+    main();
   } else {
     bootstrapDomReady();
   }
+  module.hot.accept();
 } else {
   bootstrapDomReady();
 }
