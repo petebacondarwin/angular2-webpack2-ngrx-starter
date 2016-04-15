@@ -31,8 +31,7 @@
     "typescript": "^1.8.9",
     "typings": "^0.7.9",
     "webpack": "^2.1.0-beta.4",
-    "webpack-dev-server": "2.0.0-beta",
-    "webpack-hot-middleware": "2.6.4"
+    "webpack-dev-server": "git@github.com:webpack/webpack-dev-server.git"
   },
   "license": "Apache-2.0",
   "bugs": {
