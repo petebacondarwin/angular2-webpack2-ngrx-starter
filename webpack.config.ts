@@ -1,8 +1,14 @@
+const {
+  HotModuleReplacementPlugin,
+  DefinePlugin,
+  optimize: {
+    CommonsChunkPlugin
+  }
+}, webpack = require('webpack');
 const {ForkCheckerPlugin} = require('awesome-typescript-loader');
-const webpack = require('webpack');
 const path = require('path');
 
-
+// update WebpackConfig type definition below and send a Pull-Request
 function webpackConfig(options: EnvOptions = {}): WebpackConfig {
 
   return {
@@ -33,10 +39,10 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
 
 
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
+      new HotModuleReplacementPlugin(),
       new ForkCheckerPlugin(),
-      new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
-      new webpack.DefinePlugin({
+      new CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
+      new DefinePlugin({
         ENV: JSON.stringify(options.ENV),
         HMR: false
       })
