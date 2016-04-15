@@ -11,7 +11,7 @@ const path = require('path');
 // update WebpackConfig type definition below and send a Pull-Request
 function webpackConfig(options: EnvOptions = {}): WebpackConfig {
 
-  const ENV = {
+  const CONSTANTS = {
     ENV: JSON.stringify(options.ENV),
     HMR: options.HMR,
     PORT: 3000,
@@ -53,7 +53,7 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
       new HotModuleReplacementPlugin(),
       new ForkCheckerPlugin(),
       new CommonsChunkPlugin({ name: ['polyfills', 'vendor', 'main'].reverse(), minChunks: Infinity }),
-      new DefinePlugin(ENV)
+      new DefinePlugin(CONSTANTS)
     ],
 
     resolve: {
@@ -62,9 +62,9 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
 
     devServer: {
       contentBase: './src',
-      port: ENV.PORT,
-      hot: options.HMR,
-      inline: options.HMR,
+      port: CONSTANTS.PORT,
+      hot: CONSTANTS.HMR,
+      inline: CONSTANTS.HMR,
       historyApiFallback: true
     },
 
