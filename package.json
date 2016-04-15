@@ -16,9 +16,9 @@
     "postinstall": "npm run typings-install"
   },
   "dependencies": {
-    "angular2": "2.0.0-beta.14",
-    "rxjs": "~5.0.0-beta.4",
-    "zone.js": "~0.6.10"
+    "angular2": "2.0.0-beta.15",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "~0.6.11"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^0.15.10",
@@ -26,7 +26,7 @@
     "es6-shim": "^0.35.0",
     "json-loader": "^0.5.4",
     "raw-loader": "^0.5.1",
-    "reflect-metadata": "^0.1.2",
+    "reflect-metadata": "0.1.2",
     "ts-node": "^0.6.2",
     "typescript": "^1.8.9",
     "typings": "^0.7.9",
