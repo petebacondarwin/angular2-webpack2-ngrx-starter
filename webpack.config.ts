@@ -1,5 +1,8 @@
-// look in ./config/
+/**
+ * @author: @AngularClass
+ */
 
+// Look in ./config folder for webpack.dev.js
 switch (process.env.NODE_ENV) {
   case 'production':
     module.exports = require('./config/webpack.prod');
@@ -10,5 +13,5 @@ switch (process.env.NODE_ENV) {
     break;
   case 'development':
   default:
-    module.exports = require('./config/webpack.dev.ts');
+    module.exports = require('./config/webpack.dev');
 }
