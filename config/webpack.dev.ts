@@ -41,7 +41,7 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
     module: {
       loaders: [
         // Support for .ts files.
-        { test: /\.ts$/,   loader: 'awesome-typescript-loader' },
+        { test: /\.ts$/,   loader: 'ts-loader' },
         { test: /\.json$/, loader: 'json-loader' },
         { test: /\.html/,  loader: 'raw-loader' },
         { test: /\.css$/,  loader: 'raw-loader' },
