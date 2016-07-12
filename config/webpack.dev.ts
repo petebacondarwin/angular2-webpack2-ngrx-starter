@@ -5,11 +5,8 @@ const {
     CommonsChunkPlugin
   }
 } = require('webpack');
-
 const ProgressPlugin = require('webpack/lib/ProgressPlugin.js');
-
 const {ForkCheckerPlugin} = require('awesome-typescript-loader');
-const path = require('path');
 
 // update WebpackConfig type definition below and send a Pull-Request
 function webpackConfig(options: EnvOptions = {}): WebpackConfig {
@@ -35,7 +32,7 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
     },
 
     output: {
-      path: path.join(__dirname, 'dist'),
+      path: options.distPath,
       filename: '[name].bundle.js',
       sourceMapFilename: '[name].map',
       chunkFilename: '[id].chunk.js'
@@ -55,7 +52,7 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
     plugins: [
       new HotModuleReplacementPlugin(),
       new ForkCheckerPlugin(),
-      new CommonsChunkPlugin({ name: ['polyfills', 'vendor', 'main'].reverse(), minChunks: Infinity }),
+      new CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
       new DefinePlugin(CONSTANTS),
       new ProgressPlugin({})
     ],
@@ -88,19 +85,8 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
 
 
 // Export
-module.exports = logOptions(webpackConfig);
+module.exports = webpackConfig;
 
-
-
-
-
-
-function logOptions(fn) {
-  return (options: EnvOptions = {}) => {
-    console.log('Env Options: ', JSON.stringify(options, null, 2));
-    return fn(options);
-  };
-}
 
 // Types
 type Entry = Array<string> | Object;

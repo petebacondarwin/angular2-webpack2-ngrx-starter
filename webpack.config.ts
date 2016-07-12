@@ -1,17 +1,28 @@
+const path = require('path');
+const distPath = path.resolve(__dirname, 'dist');
+
 /**
  * @author: @AngularClass
  */
 
+let configFn;
+
 // Look in ./config folder for webpack.dev.js
 switch (process.env.NODE_ENV) {
   case 'production':
-    module.exports = require('./config/webpack.prod');
+    configFn = require('./config/webpack.prod');
     break;
   case 'test':
   case 'testing':
-    module.exports = require('./config/webpack.test');
+    configFn = require('./config/webpack.test');
     break;
   case 'development':
   default:
-    module.exports = require('./config/webpack.dev');
+    configFn = require('./config/webpack.dev');
 }
+
+module.exports = (options: EnvOptions = {}) => {
+  options.distPath = options.distPath || distPath;
+  console.log('Env Options: ', JSON.stringify(options, null, 2));
+  return configFn(options);
+};
