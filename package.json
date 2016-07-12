@@ -18,21 +18,22 @@
     "postinstall": "npm run typings-install"
   },
   "dependencies": {
-    "@angular/common": "^2.0.0-rc.1",
-    "@angular/compiler": "^2.0.0-rc.1",
-    "@angular/core": "^2.0.0-rc.1",
-    "@angular/http": "^2.0.0-rc.1",
-    "@angular/platform-browser": "^2.0.0-rc.1",
-    "@angular/platform-browser-dynamic": "^2.0.0-rc.1",
+    "@angular/common": "^2.0.0-rc.4",
+    "@angular/compiler": "^2.0.0-rc.4",
+    "@angular/core": "^2.0.0-rc.4",
+    "@angular/http": "^2.0.0-rc.4",
+    "@angular/platform-browser": "^2.0.0-rc.4",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.4",
     "@types/core-js": "^0.9.22-alpha",
     "@types/node": "^4.0.22-alpha",
     "core-js": "^2.2.0",
-    "rxjs": "~5.0.0-beta.2",
+    "rxjs": "^5.0.0-beta.10",
     "typescript": "^1.9.0-dev.20160607-1.0",
     "typings": "^1.0.4",
-    "zone.js": "~0.6.12"
+    "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "awesome-typescript-loader": "^2.0.1",
     "es6-promise": "^3.1.2",
     "es6-shim": "^0.35.0",
     "json-loader": "^0.5.4",
@@ -41,11 +42,12 @@
     "ts-helpers": "^1.1.0",
     "ts-loader": "^0.8.2",
     "ts-node": "^0.8.0",
-    "typescript": "^1.9.0-dev.20160409",
+    "tslint": "^3.13.0-dev.0",
+    "typescript": "^2.1.0-dev.20160712",
     "typings": "^1.0.4",
     "webpack": "^2.1.0-beta.12",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "2.0.0-beta"
+    "webpack-dev-server": "^2.1.0-beta.0"
   },
   "license": "Apache-2.0",
   "bugs": {
