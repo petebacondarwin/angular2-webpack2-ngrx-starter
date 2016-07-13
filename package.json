@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "test": "karma start testing/karma.conf.js --single-run",
-    "test:watch": "karma start",
+    "test:watch": "karma start testing/karma.conf.js",
     "start": "npm run server:dev",
     "start:hmr": "npm run server:dev -- --env.HMR",
     "server:dev": "node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.ENV development",
