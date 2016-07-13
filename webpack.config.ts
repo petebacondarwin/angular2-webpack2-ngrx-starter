@@ -7,18 +7,18 @@ const distPath = path.resolve(__dirname, 'dist');
 
 let configFn;
 
-// Look in ./config folder for webpack.dev.js
+// Look in ./webpack folder for webpack.dev.js
 switch (process.env.NODE_ENV) {
   case 'production':
-    configFn = require('./config/webpack.prod');
+    configFn = require('./webpack/webpack.prod');
     break;
   case 'test':
   case 'testing':
-    configFn = require('./config/webpack.test');
+    configFn = require('./webpack/webpack.test');
     break;
   case 'development':
   default:
-    configFn = require('./config/webpack.dev');
+    configFn = require('./webpack/webpack.dev');
 }
 
 module.exports = (options: EnvOptions = {}) => {
