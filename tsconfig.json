@@ -1,18 +1,25 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "module": "commonjs",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": false,
-    "pretty": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "noEmitHelpers": true
   },
   "exclude": [
+    "node_modules",
     "typings/main.d.ts",
-    "typings/main",
-    "node_modules"
+    "typings/main"
+  ],
+  "filesGlob": [
+    "./src/**/*.ts",
+    "!./node_modules/**/*.ts",
+    "src/typings.d.ts",
+    "typings/index.d.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
+    "resolveGlobs": true,
     "forkChecker": true
   },
   "compileOnSave": false,

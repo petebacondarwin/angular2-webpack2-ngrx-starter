@@ -13,8 +13,8 @@
     "test:watch": "karma start testing/karma.conf.js",
     "start": "npm run server:dev",
     "start:hmr": "npm run server:dev -- --env.HMR",
-    "server:dev": "node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.ENV development",
-    "build": "node_modules/webpack/bin/webpack.js --env.ENV development",
+    "server:dev": "node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.ENV dev",
+    "build": "node_modules/webpack/bin/webpack.js --env.ENV dev",
     "typings-install": "node_modules/typings/dist/bin.js install",
     "postinstall": "npm run typings-install"
   },

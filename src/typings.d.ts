@@ -59,3 +59,45 @@ interface NodeRequire extends WebpackRequire {}
 // interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
+
+
+interface WebpackConfig {
+  cache?: boolean;
+  target?: string;
+  devtool?: string;
+  entry: Array<string> | Object;
+  output: any;
+  module?: {
+    loaders?: Array<any>
+  };
+  plugins?: Array<any>;
+  resolve?: {
+    modules?: Array<string>;
+    descriptionFiles?: Array<string>;
+    mainFields?: Array<string>;
+    aliasFields?: Array<string>;
+    extensions?: Array<string>;
+    enforceExtension?: boolean;
+    moduleExtensions?: Array<string>;
+    enforceModuleExtension?: boolean;
+    alias?: { [key: string]: string };
+  };
+  devServer?: {
+    contentBase?: string;
+    port?: number;
+    historyApiFallback?: boolean;
+    hot?: boolean;
+    inline?: boolean;
+  };
+  node?: {
+    process?: boolean;
+    global?: boolean;
+    Buffer?: boolean;
+    crypto?: string | boolean;
+    module?: boolean;
+    clearImmediate?: boolean;
+    setImmediate?: boolean
+    clearTimeout?: boolean;
+    setTimeout?: boolean
+  };
+}

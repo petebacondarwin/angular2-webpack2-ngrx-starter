@@ -1,9 +1,10 @@
-require('core-js');
+require('core-js/es6');
+require('core-js/es7/reflect');
 require('ts-helpers');
+require('es6-shim');
+require('reflect-metadata');
 
 Error.stackTraceLimit = Infinity;
-
-require('reflect-metadata');
 
 const testContext = require.context('../src', true, /\.spec\.ts/);
 testContext.keys().forEach(testContext);
