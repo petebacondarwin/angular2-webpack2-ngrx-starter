@@ -13,6 +13,7 @@ import {MyUppercasePipe} from './my-uppercase.pipe';
   <main>
 
     <div>Your Content Here {{ name }}</div>
+    <button (click)="updateName('Other Person')">Change Name</button>
 
   </main>
 
@@ -20,7 +21,12 @@ import {MyUppercasePipe} from './my-uppercase.pipe';
   `
 })
 export class App {
+  public name: string;
   constructor() {
     console.log('Hello Angular 2 Webpack 2');
+  }
+
+  updateName(value) {
+    this.name = value;
   }
 }

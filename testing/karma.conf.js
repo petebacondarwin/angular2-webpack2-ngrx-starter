@@ -47,8 +47,8 @@ module.exports = function(karma) {
     webpack: {
       devtool: 'inline-source-map',
       resolve: {
-        root: __dirname,
-        extensions: ['', '.ts', '.js']
+        modules: ['src', 'node_modules'],
+        extensions: ['.ts', '.js']
       },
       module: {
         loaders: [
@@ -65,7 +65,7 @@ module.exports = function(karma) {
         postLoaders: [
           {
             test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
-            include: path.resolve(__dirname, 'lib'),
+            include: path.resolve(__dirname, '../src'),
             exclude: [
               /\.(e2e|spec)\.ts$/,
               /node_modules/

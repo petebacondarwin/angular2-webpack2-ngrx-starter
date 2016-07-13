@@ -28,7 +28,6 @@ function webpackConfig(options: any = {}): WebpackConfig {
     // devtool: 'source-map',
     devtool: 'cheap-module-eval-source-map',
 
-
     entry: {
       polyfills: './src/polyfills',
       vendor:    './src/vendor',
@@ -36,7 +35,7 @@ function webpackConfig(options: any = {}): WebpackConfig {
     },
 
     resolve: {
-      extensions: ['', '.ts', '.js', '.json'],
+      extensions: ['.ts', '.js', '.json'],
       modules: [ 'src', 'node_modules']
     },
 
