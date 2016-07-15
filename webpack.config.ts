@@ -62,7 +62,6 @@ function webpackConfig(options: any = {}): WebpackConfig {
       new ForkCheckerPlugin(),
       new TsConfigPathsPlugin(),
       new CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
-      new DefinePlugin(CONSTANTS),
       new ProgressPlugin({})
     ],
 
