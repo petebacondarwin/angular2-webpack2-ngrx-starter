@@ -1,6 +1,6 @@
 import { addProviders, inject, TestComponentBuilder, async } from '@angular/core/testing';
 
-import { App } from './app.component';
+import { AppComponent } from './app.component';
 
 describe('App component', () => {
   let builder : TestComponentBuilder;
@@ -10,7 +10,7 @@ describe('App component', () => {
   }));
 
   it('should display messages', async(() =>
-    builder.createAsync(App).then((fixture) => {
+    builder.createAsync(AppComponent).then((fixture) => {
       let element = fixture.debugElement.nativeElement;
 
       fixture.detectChanges();

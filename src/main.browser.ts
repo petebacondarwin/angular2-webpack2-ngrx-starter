@@ -1,12 +1,17 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import { STORE_PROVIDERS, App } from './app';
+import { STORE_PROVIDERS, AppComponent } from './app';
 
-// Angular 2
-export function main() {
-  return bootstrap(App, [
-    STORE_PROVIDERS
-  ]);
-}
+import { instrumentStore } from '@ngrx/store-devtools';
+import { useLogMonitor } from '@ngrx/store-log-monitor';
 
+bootstrap(AppComponent, [
+  STORE_PROVIDERS,
 
-main();
+  // instrumentStore() sets up the @ngrx/store-devtools providers
+  instrumentStore({
+    monitor: useLogMonitor({
+      position: 'right',
+      visible: true
+    })
+  }),
+]);
