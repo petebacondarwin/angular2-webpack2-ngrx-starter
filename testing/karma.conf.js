@@ -57,7 +57,6 @@ module.exports = function(karma) {
             exclude: /(node_modules)/,
             loader: 'awesome-typescript-loader'
           },
-          // { test: /\.ts$/,   loader: 'ts-loader' },
           { test: /\.json$/, loader: 'json-loader' },
           { test: /\.html/,  loader: 'raw-loader' },
           { test: /\.css$/,  loader: 'raw-loader' },

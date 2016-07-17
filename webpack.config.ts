@@ -1,6 +1,4 @@
 const {
-  HotModuleReplacementPlugin,
-  DefinePlugin,
   optimize: {
     CommonsChunkPlugin
   }
@@ -14,13 +12,6 @@ module.exports = webpackConfig;
 
 
 function webpackConfig(options: any = {}): WebpackConfig {
-
-  const CONSTANTS = {
-    ENV: JSON.stringify(options.ENV),
-    HMR: options.HMR,
-    PORT: 3000,
-    HOST: 'localhost'
-  };
 
   return {
     cache: true,
@@ -58,7 +49,6 @@ function webpackConfig(options: any = {}): WebpackConfig {
 
 
     plugins: [
-      new HotModuleReplacementPlugin(),
       new ForkCheckerPlugin(),
       new TsConfigPathsPlugin(),
       new CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
@@ -67,9 +57,7 @@ function webpackConfig(options: any = {}): WebpackConfig {
 
     devServer: {
       contentBase: './src',
-      port: CONSTANTS.PORT,
-      hot: CONSTANTS.HMR,
-      inline: CONSTANTS.HMR,
+      port: 3000,
       historyApiFallback: true
     },
 
