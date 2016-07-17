@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MyUppercasePipe} from './my-uppercase.pipe';
+import {MyUppercasePipe} from '../shared/my-uppercase.pipe';
 
 
 @Component({
