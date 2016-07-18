@@ -1,17 +1,9 @@
-const {
-  optimize: {
-    CommonsChunkPlugin
-  }
-} = require('webpack');
-
+const CommonsChunkPlugin = require('webpack').optimize.CommonsChunkPlugin;
 const ProgressPlugin = require('webpack/lib/ProgressPlugin.js');
 const {ForkCheckerPlugin, TsConfigPathsPlugin} = require('awesome-typescript-loader');
 
 // Export
-module.exports = webpackConfig;
-
-
-function webpackConfig(options: any = {}): WebpackConfig {
+module.exports = function webpackConfig(options: any = {}): WebpackConfig {
 
   return {
     cache: true,
@@ -73,4 +65,4 @@ function webpackConfig(options: any = {}): WebpackConfig {
       setTimeout: true
     }
   };
-}
+};
