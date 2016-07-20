@@ -1,4 +1,5 @@
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/ignoreElements';
 import {Injectable} from '@angular/core';
 import {ActionReducer, Dispatcher, State} from '@ngrx/store';
 import {FirebaseAuthState, FirebaseAuth, AuthProviders} from 'angularfire2';
@@ -84,7 +85,7 @@ export class AuthEffects {
   logout = this.update$
     .whenAction(LOG_OUT)
     .do(() => this.auth.logout())
-    .filter(() => false);
+    .ignoreElements();
 
   @Effect()
   login = this.update$
@@ -93,11 +94,11 @@ export class AuthEffects {
       this.auth.login(update.action.payload)
         .then(authInfo => this.actions.authSuccess(authInfo), error => this.actions.authFailure(error))
     )
-    .filter(() => false);
+    .ignoreElements();
 
   @Effect()
   authenticationFailure = this.update$
     .whenAction(AUTH_FAILURE)
     .do(update => console.log(update.action.payload))
-    .filter(() => false);
+    .ignoreElements();
 }
