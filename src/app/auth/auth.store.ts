@@ -4,13 +4,6 @@ import {ActionReducer, Dispatcher, State} from '@ngrx/store';
 import {FirebaseAuthState, FirebaseAuth, AuthProviders} from 'angularfire2';
 import { StateUpdates, Effect } from '@ngrx/effects';
 
-export interface UserInfo {
-  uid: string;
-  email: string;
-  displayName: string;
-  profileImage: string;
-}
-
 // Action Types
 export const LOG_IN = '[auth] LOGIN';
 export const AUTH_SUCCESS = '[auth] AUTH_SUCCESS';
