@@ -8,8 +8,8 @@ module.exports = function webpackConfig(options: any = {}): WebpackConfig {
   return {
     cache: true,
     // devtool: 'hidden-source-map',
-    // devtool: 'source-map',
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
+    //devtool: 'cheap-module-eval-source-map',
 
     entry: {
       polyfills: './src/polyfills',
