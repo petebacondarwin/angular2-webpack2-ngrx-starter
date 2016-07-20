@@ -1,4 +1,4 @@
-import {FIREBASE_PROVIDERS as _FIREBASE_PROVIDERS, defaultFirebase, firebaseAuthConfig, AuthProviders, AuthMethods} from 'angularfire2';
+import {FIREBASE_PROVIDERS as _FIREBASE_PROVIDERS, defaultFirebase, firebaseAuthConfig, AuthMethods} from 'angularfire2';
 
 
 export const FIREBASE_PROVIDERS = [
@@ -10,7 +10,6 @@ export const FIREBASE_PROVIDERS = [
     storageBucket: ''
   }),
   firebaseAuthConfig({
-    provider: AuthProviders.Google,
     method: AuthMethods.Popup
   })
 ];

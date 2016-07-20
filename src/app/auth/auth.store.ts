@@ -1,7 +1,15 @@
+import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
 import {ActionReducer, Dispatcher, State} from '@ngrx/store';
-import {FirebaseAuthState, FirebaseAuth} from 'angularfire2';
+import {FirebaseAuthState, FirebaseAuth, AuthProviders} from 'angularfire2';
 import { StateUpdates, Effect } from '@ngrx/effects';
+
+export interface UserInfo {
+  uid: string;
+  email: string;
+  displayName: string;
+  profileImage: string;
+}
 
 // Action Types
 export const LOG_IN = '[auth] LOGIN';
@@ -14,8 +22,18 @@ export const LOG_OUT = '[auth] LOG_OUT';
 export class AuthActions {
   constructor(public dispatcher: Dispatcher) {}
 
-  login(provider) {
-    this.dispatcher.dispatch({ type: LOG_IN, payload: provider });
+  loginViaGoogle() {
+    this.login(AuthProviders.Google, ['email']);
+  }
+  loginViaTwitter() {
+    this.login(AuthProviders.Twitter);
+  }
+  loginViaFacebook() {
+    this.login(AuthProviders.Facebook);
+  }
+
+  login(provider: AuthProviders, scope?: string[]) {
+    this.dispatcher.dispatch({ type: LOG_IN, payload: {provider: provider, scope: scope} });
   }
   logout() {
     this.dispatcher.dispatch({ type: LOG_OUT });
@@ -57,30 +75,36 @@ export function selectIsLoggedIn(auth$: AuthState) {
   return auth$.map(auth => !!auth.authInfo);
 }
 
+export function selectUserInfo(auth$: AuthState) {
+  return auth$.map(auth => auth.authInfo && auth.authInfo.auth);
+}
+
 // Effects
 @Injectable()
 export class AuthEffects {
-  constructor(private update$: StateUpdates<any>, private auth: FirebaseAuth, private actions: AuthActions) {}
+  constructor(private update$: StateUpdates<any>, private auth: FirebaseAuth, private actions: AuthActions) {
+    // Grab the initial authentication state
+    auth.take(1).subscribe(authInfo => authInfo && actions.authSuccess(authInfo));
+  }
 
   @Effect()
   logout = this.update$
     .whenAction(LOG_OUT)
-    .map(() => this.auth.logout());
+    .do(() => this.auth.logout())
+    .filter(() => false);
 
   @Effect()
   login = this.update$
     .whenAction(LOG_IN)
-    .map(update => {
-      this.auth.login()
-        .then(
-          authInfo => this.actions.authSuccess(authInfo),
-          error => this.actions.authFailure(error)
-        );
-    }
-    );
+    .do(update =>
+      this.auth.login(update.action.payload)
+        .then(authInfo => this.actions.authSuccess(authInfo), error => this.actions.authFailure(error))
+    )
+    .filter(() => false);
 
   @Effect()
   authenticationFailure = this.update$
     .whenAction(AUTH_FAILURE)
-    .map(update => console.log(update.action.payload));
+    .do(update => console.log(update.action.payload))
+    .filter(() => false);
 }
