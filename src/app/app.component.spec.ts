@@ -2,7 +2,7 @@ import { addProviders, inject, TestComponentBuilder, async } from '@angular/core
 
 import { AppComponent } from './app.component';
 
-describe('App component', () => {
+xdescribe('App component', () => {
   let builder : TestComponentBuilder;
   beforeEach(() => addProviders([]));
   beforeEach(inject([TestComponentBuilder], (_builder) => {

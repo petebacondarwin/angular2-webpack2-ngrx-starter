@@ -1,9 +1,10 @@
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/ignoreElements';
 import {Injectable} from '@angular/core';
-import {ActionReducer, Dispatcher, State} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
+import {ActionReducer, Dispatcher} from '@ngrx/store';
 import {FirebaseAuthState, FirebaseAuth, AuthProviders} from 'angularfire2';
-import { StateUpdates, Effect } from '@ngrx/effects';
+import {StateUpdates, Effect} from '@ngrx/effects';
 
 // Action Types
 export const LOG_IN = '[auth] LOGIN';
@@ -45,7 +46,7 @@ export interface AuthModel {
   authenticating: boolean;
   authInfo: FirebaseAuthState;
 }
-export class AuthState extends State<AuthModel> {}
+export class AuthState extends Observable<AuthModel> {}
 export const INITIAL_VALUE: AuthModel = {authenticating: false, authInfo: null};
 export const WAITING_FOR_AUTHENTICATION_VALUE = {authenticating: true, authInfo: null};
 
@@ -65,12 +66,12 @@ export const authReducer: ActionReducer<AuthModel> = (state = INITIAL_VALUE, act
 };
 
 // Selectors
-export function selectIsLoggedIn(auth$: AuthState) {
-  return auth$.map(auth => !!auth.authInfo);
-}
+@Injectable()
+export class AuthSelectors {
+  constructor(private auth$: AuthState) {}
 
-export function selectUserInfo(auth$: AuthState) {
-  return auth$.map(auth => auth.authInfo && auth.authInfo.auth);
+  isLoggedIn$ = this.auth$.map(auth => !!auth.authInfo);
+  userInfo$ = this.auth$.map(auth => auth.authInfo && auth.authInfo.auth);
 }
 
 // Effects

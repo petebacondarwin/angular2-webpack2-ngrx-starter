@@ -3,7 +3,7 @@ import { runEffects } from '@ngrx/effects';
 
 // Import features
 import {counterReducer, CounterActions, CounterState} from './counter';
-import {authReducer, AuthActions, AuthState, AuthEffects} from './auth';
+import {authReducer, AuthActions, AuthState, AuthEffects, AuthSelectors} from './auth';
 // ...
 
 // Angular Providers
@@ -24,6 +24,7 @@ export const STORE_PROVIDERS = [
   // Sub-states
   { provide: CounterState, deps: [State], useFactory: (state$) => state$.map((s) => s.counter) },
   { provide: AuthState, deps: [State], useFactory: (state$) => state$.map((s) => s.auth) },
+  AuthSelectors,
   // ...
 
   // Run Effects
