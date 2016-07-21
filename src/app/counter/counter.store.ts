@@ -40,3 +40,10 @@ export const counterReducer: ActionReducer<CounterModel> = (state = INITIAL_VALU
       return state;
   }
 };
+
+
+export const counterFeature = {
+  reducer: counterReducer,
+  actions: CounterActions,
+  state: CounterState
+};
