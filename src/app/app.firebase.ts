@@ -4,10 +4,10 @@ import {FIREBASE_PROVIDERS as _FIREBASE_PROVIDERS, defaultFirebase, firebaseAuth
 export const FIREBASE_PROVIDERS = [
   _FIREBASE_PROVIDERS,
   defaultFirebase({
-    apiKey: 'AIzaSyA3TNmdr2wH8zjkyRqEP8hMT6BmTHCI8y8',
-    authDomain: 'bacondarwin-com-api-project-1048874335914.firebaseapp.com',
-    databaseURL: 'https://bacondarwin-com-api-project-1048874335914.firebaseio.com',
-    storageBucket: ''
+    apiKey: 'AIzaSyBouCf6DgKiclwOdRyH2jlWncL9yIXJS9c',
+   authDomain: 'angular-test-76b7a.firebaseapp.com',
+    databaseURL: 'https://angular-test-76b7a.firebaseio.com',
+    storageBucket: 'angular-test-76b7a.appspot.com'
   }),
   firebaseAuthConfig({
     method: AuthMethods.Popup
