@@ -4,12 +4,13 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ActionReducer, Dispatcher} from '@ngrx/store';
 import {FirebaseAuthState, FirebaseAuth, AuthProviders} from 'angularfire2';
+import {AuthConfiguration as fbAuthConfiguration} from 'angularfire2/providers/auth_backend';
 import {StateUpdates, Effect} from '@ngrx/effects';
 
 // Action Types
 export const LOG_IN = '[auth] LOGIN';
 export const AUTH_SUCCESS = '[auth] AUTH_SUCCESS';
-export const AUTH_FAILURE = '[authFAILURE AUTH_FAILURE';
+export const AUTH_FAILURE = '[auth] FAILURE AUTH_FAILURE';
 export const LOG_OUT = '[auth] LOG_OUT';
 
 // Action Helpers
@@ -17,18 +18,8 @@ export const LOG_OUT = '[auth] LOG_OUT';
 export class AuthActions {
   constructor(public dispatcher: Dispatcher) {}
 
-  loginViaGoogle() {
-    this.login(AuthProviders.Google, ['email']);
-  }
-  loginViaTwitter() {
-    this.login(AuthProviders.Twitter);
-  }
-  loginViaFacebook() {
-    this.login(AuthProviders.Facebook);
-  }
-
-  login(provider: AuthProviders, scope?: string[]) {
-    this.dispatcher.dispatch({ type: LOG_IN, payload: {provider: provider, scope: scope} });
+  login(authConfig: AuthConfiguration) {
+    this.dispatcher.dispatch({ type: LOG_IN, payload: authConfig });
   }
   logout() {
     this.dispatcher.dispatch({ type: LOG_OUT });
@@ -42,21 +33,30 @@ export class AuthActions {
 }
 
 // Model
+export interface AuthConfiguration extends fbAuthConfiguration {
+  name: string;
+}
 export interface AuthModel {
   authenticating: boolean;
+  authProviderConfigs: AuthConfiguration[];
   authInfo: FirebaseAuthState;
 }
 export class AuthState extends Observable<AuthModel> {}
-export const INITIAL_VALUE: AuthModel = {authenticating: false, authInfo: null};
-export const WAITING_FOR_AUTHENTICATION_VALUE = {authenticating: true, authInfo: null};
+
+const INITIAL_AUTH_CONFIGURATION: AuthConfiguration[] = [
+  { name: 'Google', provider: AuthProviders.Google, scope: ['email'] },
+  { name: 'Facebook', provider: AuthProviders.Facebook },
+  { name: 'Twitter', provider: AuthProviders.Twitter }
+];
+const INITIAL_VALUE: AuthModel = {authenticating: false, authProviderConfigs: INITIAL_AUTH_CONFIGURATION, authInfo: null};
 
 // Reducer
 export const authReducer: ActionReducer<AuthModel> = (state = INITIAL_VALUE, action) => {
   switch (action.type) {
     case LOG_IN:
-      return WAITING_FOR_AUTHENTICATION_VALUE;
+      return Object.assign({}, state, {authenticating: true});
     case AUTH_SUCCESS:
-      return {authenticating: false, authInfo: action.payload};
+      return Object.assign({}, state, {authenticating: false, authInfo: action.payload});
     case AUTH_FAILURE:
     case LOG_OUT:
       return INITIAL_VALUE;
@@ -72,6 +72,7 @@ export class AuthSelectors {
 
   isLoggedIn$ = this.auth$.map(auth => !!auth.authInfo);
   userInfo$ = this.auth$.map(auth => auth.authInfo && auth.authInfo.auth);
+  authProviderConfigs$ = this.auth$.map(auth => auth.authProviderConfigs);
 }
 
 // Effects

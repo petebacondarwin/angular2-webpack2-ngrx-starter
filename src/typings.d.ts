@@ -21,6 +21,12 @@ import * as _ from 'lodash'
  *
  */
 
+declare namespace jasmine {
+  interface Matchers {
+    toMatchAuthConfigurations;
+  }
+}
+
 
 interface WebpackModule {
   hot: {
