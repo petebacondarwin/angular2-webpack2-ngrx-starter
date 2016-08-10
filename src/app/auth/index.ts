@@ -1,2 +1,3 @@
-export {AuthActions, authReducer, AuthState, AuthModel, AuthEffects, AuthSelectors, authFeature} from './auth.store';
+export {authReducer, AuthState, AuthModel} from './auth.store';
 export {AuthStatusComponent} from './auth.component';
+export {AuthModule} from './auth.module';

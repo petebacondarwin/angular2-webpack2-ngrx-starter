@@ -1,19 +1,4 @@
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {STORE_PROVIDERS, ROUTE_PROVIDERS, FIREBASE_PROVIDERS, AppComponent} from './app';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule }              from './app/app.module';
 
-import {instrumentStore} from '@ngrx/store-devtools';
-import {useLogMonitor} from '@ngrx/store-log-monitor';
-
-bootstrap(AppComponent, [
-  STORE_PROVIDERS,
-  ROUTE_PROVIDERS,
-  FIREBASE_PROVIDERS,
-
-  // instrumentStore() sets up the @ngrx/store-devtools providers
-  instrumentStore({
-    monitor: useLogMonitor({
-      position: 'right',
-      visible: true
-    })
-  }),
-]);
+platformBrowserDynamic().bootstrapModule(AppModule);

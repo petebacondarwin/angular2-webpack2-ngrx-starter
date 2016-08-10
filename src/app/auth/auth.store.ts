@@ -104,11 +104,3 @@ export class AuthEffects {
     .do(update => console.log(update.action.payload))
     .ignoreElements();
 }
-
-export const authFeature = {
-  reducer: authReducer,
-  actions: AuthActions,
-  effects: AuthEffects,
-  selectors: AuthSelectors,
-  state: AuthState
-};

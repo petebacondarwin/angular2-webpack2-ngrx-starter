@@ -3,7 +3,7 @@ import { addProviders, inject, TestComponentBuilder, async } from '@angular/core
 import { AppComponent } from './app.component';
 
 xdescribe('App component', () => {
-  let builder : TestComponentBuilder;
+  let builder: TestComponentBuilder;
   beforeEach(() => addProviders([]));
   beforeEach(inject([TestComponentBuilder], (_builder) => {
     builder = _builder;
@@ -17,7 +17,7 @@ xdescribe('App component', () => {
       expect(element.innerHTML).toContain('HELLO ANGULAR 2 AND WEBPACK 2');
       expect(element.innerHTML).toContain('Your Content Here');
 
-      fixture.componentInstance.name = 'Jo Bloggs';
+//      fixture.componentInstance.name = 'Jo Bloggs';
       expect(element.innerHTML).not.toContain('Your Content Here Jo Bloggs');
 
       fixture.detectChanges();

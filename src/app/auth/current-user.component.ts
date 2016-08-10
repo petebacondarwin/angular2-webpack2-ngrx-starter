@@ -6,5 +6,5 @@ import {FirebaseAuthState} from 'angularfire2';
   template: `<div class="user-info" *ngIf="userInfo">Logged in as {{ userInfo.displayName }}</div>`
 })
 export class CurrentUserComponent {
-  @Input() userInfo: FirebaseAuthState;
+  @Input('user') userInfo: FirebaseAuthState;
 }
